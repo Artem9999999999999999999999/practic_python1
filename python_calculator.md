@@ -70,7 +70,7 @@ class TestComplex(unittest.TestCase):
         second = Complex(2, 5)
         third = Complex(3, 1)
         self.assertEqual(Take_Rational_Part(first), Take_Rational_Part(second))      
-        self.assertNotEqual(Take_Imaginary_Part(first), Take_Imaginary_Part(third))  
+        self.assertNotEqual(Take_Rational_Part(first), Take_Rational_Partthird))  
          
     def test_equal_img(self):
         first = Complex(2, 6)
