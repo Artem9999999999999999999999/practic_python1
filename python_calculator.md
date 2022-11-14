@@ -51,7 +51,7 @@ def Division(x1, x2):
 
 ## Test calculator complex
 
-Тест система калькулятора
+Тест система калькулятора комплексных чисел
 
 ```python
 
