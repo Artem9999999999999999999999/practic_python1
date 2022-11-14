@@ -12,7 +12,6 @@
 + [Nested loops](#nested-loops)
 + [Diagonal Sum](#diagonal-sum)
 
-# Arrays
 
 ## Squares of sorted array
 
@@ -158,7 +157,6 @@ def merge(left, right):
     return 
 ```
 
-# Matrix
 
 ## Diagonal Sum
 
