@@ -4,6 +4,7 @@
 
 
 + [Converter](#converter)
++ [Class Converter](#class-converter)
 + [Test converter](#test-converter)
 
 # Converter
@@ -98,6 +99,47 @@ if __name__ == "__main__":
 
 ```
 
+## Class Converter 
+ 
+Реализация класса конвертер:
+
+```python
+import csv
+import json
+
+
+
+class Converter:
+    def __init__(self):
+        self.__data = None
+
+
+    def open_csv_file_and_convert(self, csv_file):
+        data_dict = {}
+        with open(csv_file, encoding='utf-8') as csv_file_handler:
+            self.__data = csv.DictReader(csv_file_handler)
+            if self.__data:
+                for rows in self.__data:
+                    key = rows['id']
+                    data_dict[key] = rows
+            return data_dict
+
+    def open_json_file_and_write_into(self, json_file, data_dict):
+        with open(json_file, 'w', encoding='utf-8') as json_file_handler:
+            json_file_handler.write(json.dumps(data_dict, indent=4))
+
+
+def main():
+    conv = Converter()
+    dict = conv.open_csv_file_and_convert(csv_file)
+    conv.open_json_file_and_write_into(json_file, dict)
+
+
+if __name__ == "__main__":
+    csv_file = "input.csv"
+    json_file = "output.json"
+    main()
+```
 
 # Test
 
