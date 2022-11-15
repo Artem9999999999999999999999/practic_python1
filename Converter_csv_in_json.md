@@ -151,11 +151,6 @@ import csv
 import json
 
 
-def open_json_file_and_write_into(json_file, data_dict):
-    with open(json_file, 'w', encoding='utf-8') as json_file_handler:
-        json_file_handler.write(json.dumps(data_dict, indent=4))
-
-
 class Converter:
     def __init__(self):
         self.__data = None
