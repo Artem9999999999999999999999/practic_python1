@@ -155,7 +155,7 @@ class Converter:
     def __init__(self):
         self.__data = None
 
-    def open_csv_file_and_convert(self, csv_file):
+    def convert_csv_in_pretty_json(self, csv_file, json_file):
         data_dict = {}
         with open(csv_file, encoding='utf-8') as csv_file_handler:
             self.__data = csv.DictReader(csv_file_handler)
@@ -166,9 +166,6 @@ class Converter:
                         data_dict[key] = rows
                     else:
                         return 'Error not title in the csv file'
-            return data_dict
-
-    def open_json_file_and_write_into(self, json_file, data_dict):
         with open(json_file, 'w', encoding='utf-8') as json_file_handler:
             json_file_handler.write(json.dumps(data_dict, indent=4))
             return
@@ -176,14 +173,14 @@ class Converter:
 
 def main():
     conv = Converter()
-    dict = conv.open_csv_file_and_convert(csv_file)
-    conv.open_json_file_and_write_into(json_file, dict)
+    conv.convert_csv_in_pretty_json(csv_file, json_file)
 
 
 if __name__ == "__main__":
     csv_file = "input.csv"
     json_file = "output.json"
     main()
+
 ```
 
 
@@ -191,7 +188,7 @@ if __name__ == "__main__":
 
 ## Test converter
 
-Тест работы конвертера: на нормальный файл, на файл с пропущенными сведениями, на файл только с заголовком, 
+Тест работы конвертера two: на нормальный файл, на файл с пропущенными сведениями, на файл только с заголовком, 
 
 ```python
 from csv_json_convert import Converter
@@ -206,8 +203,7 @@ def connect(json_doc):
 
 def test1_file_data_normal():
     db = Converter()
-    dict_data = db.open_csv_file_and_convert('test1.csv')
-    db.open_json_file_and_write_into('test1.json', dict_data)
+    db.convert_csv_in_pretty_json('test1.csv', 'test1.json')
     test1_data = connect('test1.json')
     print(test1_data)
     assert test1_data["1"]["id"] == "1"
@@ -219,8 +215,7 @@ def test1_file_data_normal():
 
 def test2_file_data_missing_element():
     db = Converter()
-    dict_data = db.open_csv_file_and_convert('test2.csv')
-    db.open_json_file_and_write_into('test2.json', dict_data)
+    db.convert_csv_in_pretty_json('test2.csv', 'test2.json')
     test2_data = connect('test2.json')
     assert test2_data["1"]["id"] == "1"
     assert test2_data["1"]["name"] == "Ivan"
@@ -231,8 +226,7 @@ def test2_file_data_missing_element():
 
 def test3_file_data_missing_all_elements():
     db = Converter()
-    dict_data = db.open_csv_file_and_convert('test3.csv')
-    db.open_json_file_and_write_into('test3.json', dict_data)
+    db.convert_csv_in_pretty_json('test3.csv', 'test3.json')
     test3_data = connect('test3.json')
     expected3 = {}
     assert expected3 == test3_data
@@ -240,10 +234,10 @@ def test3_file_data_missing_all_elements():
 
 def test4_file_data_missing_title():
     db = Converter()
-    dict_data = db.open_csv_file_and_convert('test4.csv')
-    db.open_json_file_and_write_into('test4.json', dict_data)
+    db.convert_csv_in_pretty_json('test4.csv', 'test4.json')
     test4_data = connect('test4.json')
     expected4 = 'Error not title in the csv file'
     assert expected4 == test4_data
+
 
 ```
