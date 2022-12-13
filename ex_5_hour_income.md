@@ -48,7 +48,7 @@ class Calculate_hour_salary:
         with open(self.in_name_file, "r") as read_file:
             data = json.load(read_file)
             day_in_month = RandomNumber(data['year'], data['month']).get_number()
-            data['hour_income'] = round(data['salary'] / day_in_month * 8, 2)
+            data['hour_income'] = round(data['salary'] / (day_in_month * 8), 2)
         return data
 
     def write_in_file(self, data_json):
