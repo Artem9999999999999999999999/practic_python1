@@ -8,62 +8,7 @@
 
 ## Class Converter with library
  
-Реализация конвертера следующего вида:
-
-
-input.csv
-
-
-id,name,birth,salary,department
-
-1,Ivan,1980,150000,1
-
-2,Alex,1960,200000,5
-
-3,Ivan,,130000,8
-
-->//
-
-output.json
-
-[
- {
-   id: 1,
-   
-   name: Ivan,
-   
-   birth: 1980,
-   
-   salary: 150000,
-   
-   department: 1
- },
- 
- {
-   id: 2,
-   
-   name: Alex,
-   
-   birth: 1960,
-   
-   salary: 200000,
-   
-   department: 5
- },
- 
- {
-   id: 3,
-   
-   name: Ivan,
-   
-   birth: null,
-   
-   salary: 130000,
-   
-   department: 8
-	}
-]
-
+Реализация конвертера
 
 ```python
 import csv
