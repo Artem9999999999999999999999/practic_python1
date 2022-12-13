@@ -39,17 +39,20 @@ class RandomNumber:
         return randint(20, 23)
 
 
-def get_hour_income(name_file='input.json'):
-    with open(name_file, "r") as read_file:
-        data = json.load(read_file)
-        hour_in_month = RandomNumber(data['year'], data['month']).get_number()
-        data['hour_income'] = round(data['salary'] / hour_in_month, 2)
-    return data
+class Calculate_hour_salary:
+    def __init__(self, in_name_file='input.json', out_name_file='output.json'):
+        self.in_name_file = in_name_file
+        self.out_name_file = out_name_file
+
+    def get_hour_income(self):
+        with open(self.in_name_file, "r") as read_file:
+            data = json.load(read_file)
+            hour_in_month = RandomNumber(data['year'], data['month']).get_number()
+            data['hour_income'] = round(data['salary'] / hour_in_month, 2)
+        return data
+
+    def write_in_file(self, data_json):
+        with open(self.out_name_file, 'w') as outfile:
+            json.dump(data_json, outfile)
 
 
-def write_in_file(data, /, out_name_file='output.json'):
-    with open(out_name_file, 'w') as outfile:
-        json.dump(data, outfile)
-
-
-write_in_file(get_hour_income())
