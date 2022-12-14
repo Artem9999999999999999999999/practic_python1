@@ -1,7 +1,5 @@
 # practic_python3
 
-Университетский курс по Питону. Задачи, которые могут быть полезны на собеседовании
-
 
 + [Calculator complex](#calculator-complex)
 + [Test calculator complex](#test-calculator-complex)
