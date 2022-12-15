@@ -29,7 +29,6 @@
 import json
 import math
 import re
-import numpy as np
 
 ```
 
@@ -203,6 +202,9 @@ input_str = """name,Petya,Vasya,Masha,Vova
 grade,5,5,8,3
 subject,math,language,physics,math
 year,1999,2000,1995,1998"""
+
+    list(map(dict, (zip(*map(lambda key_values: map(lambda value: (key_values[0], value), key_values[1].split(',')),
+                map(lambda key_values_raw: key_values_raw.split(',', 1),s.splitlines()))))))
 ```
 ## 16
 
@@ -216,9 +218,5 @@ a = [[11.9, 12.2, 12.9],
 result = [61.2, 61.3, 62.6]  
 
 ```python
-a = [[11.9, 12.2, 12.9],
-    [15.3, 15.1, 15.1],
-    [16.3, 16.5, 16.5],
-    [17.7, 17.5, 18.1]]
-print((np.array(a)).sum(axis=0)) #16
+   list(map(sum, zip(*numbers))) #16
 ```
