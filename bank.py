@@ -25,7 +25,7 @@ class StrategyDeal:
         return f"BANK: {self.bank}\nSTART_PRICE: {self.entry}\nSTOP_PRICE: {self.close}\n\n{targets}"
 
 
-def get_deals(raw_data):
+def pars(raw_data):
     raw_deals = raw_data.split("-----")
     deals = []
     for raw_deal in raw_deals:
@@ -65,7 +65,7 @@ def write_data(file_name, data):
 
 def main():
     content = read_data('input.txt')
-    result = get_deals(content)
+    result = pars(content)
     write_data('output.txt', result)
 
 
