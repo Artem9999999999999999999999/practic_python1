@@ -27,58 +27,15 @@ class StrategyDeal:
         targets = "\n\n".join([self.get_str_target(i + 1, t, p, b) for i, (t, p, b) in enumerate(z)])
         return f"BANK: {self.bank}\nSTART_PRICE: {self.entry}\nSTOP_PRICE: {self.close}\n{targets}"
 
-
-# def get_deals(raw_data):
-#     if raw_data != "-----":
-#         raw_index = raw_data.split(":")
-#         name_options = raw_data[:raw_index + 2]
-#         item_options = raw_data[raw_index + 2:]
-#         match name_options:
-#             case 'Bank: ':
-#                 bank_number = float(item_options[:-4])
-#             case 'Entry: ':
-#                 entry_number = float(item_options[:-4])
-#             case 'Target: ':
-#                 target_str = item_options
-#                 targets_number = [float(t[:-4]) for t in target_str.split(";")]
-#             case 'Close: ':
-#                 close_number = float(item_options[:-4])
-#
-
-    # raw_deals = raw_data.split("-----")
-    # deals = []
-    # for raw_deal in raw_deals:
-    #     bank_index = raw_deal.find('Bank:')
-    #     entry_index = raw_deal.find('Entry:')
-    #     target_index = raw_deal.find('Target:')
-    #     close_index = raw_deal.find('Close:')
-    #
-    #     bank_str = raw_deal[raw_deal.find('Bank:') + 5: raw_deal.find('USD', raw_deal.find('Bank:'))]
-    #     entry_str = raw_deal[raw_deal.find('Entry:') + 6: raw_deal.find('USD', raw_deal.find('Entry:'))]
-    #     target_str = raw_deal[raw_deal.find('Target:') + 7: raw_deal.find('USD', raw_deal.find('Target:'))]
-    #     clos_str = raw_deal[raw_deal.find('Close:') + 6: raw_deal.find('USD', raw_deal.find('Close:'))]
-    #
-    #     bank_number = float(bank_str)
-    #     entry_number = float(entry_str)
-    #     targets_number = [float(t) for t in target_str.split(";")]
-    #     clos_number = float(clos_str)
-    #
-    #     deals.append(StrategyDeal(bank_number, entry_number, targets_number, clos_number))
-    #
-    # return deals
 def get_deals(raw_data):
     raw_deals = raw_data.split("-----")
     deals = []
     list_search = []
     for raw_deal in raw_deals:
         bank_index = raw_deal.find('Bank:')
-        list_search.append(bank_index)
         entry_index = raw_deal.find('Entry:')
-        list_search.append(entry_index)
         target_index = raw_deal.find('Target:')
-        list_search.append(target_index)
         close_index = raw_deal.find('Close:')
-        list_search.append(close_index)
 
         if bank_index == -1 or entry_index == -1 or target_index == -1 or close_index == -1:
             continue
